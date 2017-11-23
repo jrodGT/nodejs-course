@@ -38,4 +38,6 @@ router.post('/testController/', controllers.tvController.postArray);
 router.get('/testController/:id',controllers.tvController.getById);
 router.delete('/testController/:id',controllers.tvController.deleteTvShow);
 router.put('/testController/:id', controllers.tvController.updateTvShow);
+router.post('/createToken',controllers.tokenController.crearToken);
+router.get('/createToken/:token',controllers.tokenController.descifrarToken);
 module.exports = router;
