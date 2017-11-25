@@ -3,7 +3,7 @@ const obj = {};
 
 const mongoose = require('mongoose');
 const TVShow = mongoose.model('TVShow');
-
+const rp = require('request-promise');
 const tvShows = [
     {
         id: 1,
@@ -42,6 +42,39 @@ obj.getArray = (req, res, next) => {
         );
 };
 
+obj.extArray = (req, res, next) => {
+    let requestOptions = {
+        method: 'GET',
+        uri: 'http://192.168.43.2:3000/test',
+        headers: {
+            'token': '12345',
+            'Content-Type': 'application/json'
+        },
+        body: {},
+        json: true
+    };
+    rp(requestOptions)
+        .then(result => res.send(result))
+        .catch(error => res.send(error));
+}
+
+obj.extCreate = (req, res, next) => {
+    let rqOp = {
+        method: 'POST',
+        uri: 'http://192.168.43.2:3000/test',
+        headers: {
+            'token':req.headers.token,
+            'Content-Type': 'application/json'
+        },
+        body: req.body,
+        json: true
+    }
+
+    rp(rqOp)
+        .then(result => res.send(result))
+        .catch(error => res.send(error));
+}
+
 obj.postArray = (req, res, next) => {
     let data = new TVShow(
         {
@@ -50,7 +83,7 @@ obj.postArray = (req, res, next) => {
             pais: req.body.pais
         });
     data.save()
-        .then(resutl => res.send())
+        .then(resutl => res.send(result))
         .catch(err => res.send({ error: err })
         );
 }

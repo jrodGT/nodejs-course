@@ -35,9 +35,11 @@ router.put('/test/:id', function (req, res, next) {
 /*UTILIZANDO LOS MODULOS DE CONTROLADORES*/
 router.get('/testController', controllers.tvController.getArray);
 router.post('/testController/', controllers.tvController.postArray);
-router.get('/testController/:id',controllers.tvController.getById);
-router.delete('/testController/:id',controllers.tvController.deleteTvShow);
+router.get('/testController/:id', controllers.tvController.getById);
+router.delete('/testController/:id', controllers.tvController.deleteTvShow);
 router.put('/testController/:id', controllers.tvController.updateTvShow);
-router.post('/createToken',controllers.tokenController.crearToken);
-router.get('/createToken/:token',controllers.tokenController.descifrarToken);
+router.post('/createToken', controllers.tokenController.crearToken);
+router.get('/createToken/:token', controllers.tokenController.descifrarToken);
+router.get('/extArray',controllers.tvController.extArray);
+router.post('/extCreate',controllers.tvController.extCreate);
 module.exports = router;
